@@ -39,6 +39,7 @@ set(SOURCES
     src/monitormanager.cpp
     src/monitormanagerimpl.cpp
     src/logmanager.cpp
+    src/gamedetector.cpp
 )
 
 set(HEADERS
@@ -56,6 +57,7 @@ set(HEADERS
     include/monitormanager.h
     include/monitormanagerimpl.h
     include/logmanager.h
+    include/gamedetector.h
 )
 
 # Get git commit hash

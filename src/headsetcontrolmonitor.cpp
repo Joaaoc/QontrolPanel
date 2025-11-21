@@ -1,3 +1,4 @@
+#include "gamedetector.h"
 #include "headsetcontrolmonitor.h"
 #include "logmanager.h"
 #include <QStandardPaths>
@@ -174,6 +175,13 @@ void HeadsetControlMonitor::executeHeadsetControlCommand(const QStringList& argu
 
 void HeadsetControlMonitor::fetchHeadsetInfo()
 {
+    // Don't call the headset controller while playing, to maintain full game performance
+    if (GameDetector::isGamingMode()) {
+        LogManager::instance()->sendWarn(LogManager::HeadsetControlManager,
+                                         QString("Game detected, skipping HeadsetControl..."));
+        return;
+    }
+
     // Early return if monitoring is stopped
     if (!m_isMonitoring) {
         return;
